@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>React app</title>
+    <title>MaskIt</title>
     <script>
-        const APP_CONFIG = JSON.parse('{"name":"React app","publicPath":"/","connection":{"REST":{"protocol":"http","host":"127.0.0.1","port":"8103"}}}');
+        const APP_CONFIG = JSON.parse('{"name":"MaskIt","publicPath":"/","connection":{"REST":{"protocol":"http","host":"127.0.0.1","port":"8103"}}}');
     </script>
   </head>
 
   <body>
-    <div id="root"></div>
+    <input type="text" data-maskit="+{7}(000) 000-00-00">
+    <input type="text" data-maskit="000 {/} 000">
   <script type="text/javascript" src="/bundle.js"></script></body>
 </html>
