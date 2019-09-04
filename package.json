@@ -1,6 +1,6 @@
 {
   "name": "maskit",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EugeneBurlak/maskit.git"
@@ -35,7 +35,7 @@
     "webpack-dev-server": "^3.5.1"
   },
   "bugs": {
-    "url": "https://github.com/EugeneBurlak/burlak-react-form/issues"
+    "url": "https://github.com/EugeneBurlak/maskit/issues"
   },
-  "homepage": "https://github.com/EugeneBurlak/burlak-react-form#readme"
+  "homepage": "https://github.com/EugeneBurlak/maskit#readme"
 }
