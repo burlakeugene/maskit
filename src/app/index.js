@@ -8,3 +8,4 @@ document.querySelectorAll('[data-maskit]').forEach((item, index) => {
     onBlur: scope => {}
   });
 });
+

@@ -57,6 +57,10 @@ export default class Maskit {
         let pattern = /^[A-Za-zА-Яа-я]+$/;
         if (pattern.test(char)) result += char;
       }
+      if (maskChar.value === 'Ы') {
+        let pattern = /^[А-Яа-я]+$/;
+        if (pattern.test(char)) result += char;
+      }
     }
     if (result.length) maskInc();
     return result;
@@ -81,45 +85,46 @@ export default class Maskit {
     return newValue;
   }
 
-  onFilled(){
-    let {onFilled} = this.options;
+  onFilled() {
+    let { onFilled } = this.options;
     this.filled = true;
     onFilled && onFilled(this);
   }
 
-  offFilled(){
-    let {offFilled} = this.options;
+  offFilled() {
+    let { offFilled } = this.options;
     this.filled = false;
     offFilled && offFilled(this);
   }
 
-  onBlur(){
-    let {onBlur, notFilledClear} = this.options;
-    notFilledClear && this.value.length !== this.mask.length && this.setValue('');
+  onBlur() {
+    let { onBlur, notFilledClear } = this.options;
+    notFilledClear &&
+      this.value.length !== this.mask.length &&
+      this.setValue('');
     onBlur && onBlur(this);
   }
 
-  setValue(value){
+  setValue(value) {
     this.input.value = value;
-    if(value.length === this.mask.length){
+    if (value.length === this.mask.length) {
       this.onFilled();
-    }
-    else{
+    } else {
       this.offFilled();
     }
   }
 
-  listenerInput(){
+  listenerInput() {
     this.input.addEventListener('input', e => {
       this.value = this.checkMask(e.target.value, this.mask);
       this.setValue(this.value);
     });
   }
 
-  listenerBlur(){
-    this.input.addEventListener('blur', (e) => {
+  listenerBlur() {
+    this.input.addEventListener('blur', e => {
       this.onBlur();
-    })
+    });
   }
 
   runListener() {
