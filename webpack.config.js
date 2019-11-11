@@ -20,7 +20,7 @@ const buildType = process.env.BUILD_TYPE || 'app';
 module.exports = {
   entry: buildType === 'package' ? './src/package/index.js' : './src/app/index.js',
   output: {
-    path: path.join(ROOT_DIR, buildType === 'package' ? '/package' : '/dist'),
+    path: path.join(ROOT_DIR, buildType === 'package' ? '/package' : '/docs'),
     publicPath: JSON_CONFIG.publicPath,
     filename: "bundle.js",
     libraryTarget: buildType === 'app' ? 'umd' : 'commonjs2'
