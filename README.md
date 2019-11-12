@@ -5,7 +5,7 @@
 npm i --save maskit
 ```
 ```
-0 - any decimal
+0 - any number
 A - any char
 Ы - any cyrillic char
 ?+-()[]{}.,\\/-=_~`|'"  - autofilled chars, also you can wrap any symbol in brackets "{someChar}", and it will be autofilled
