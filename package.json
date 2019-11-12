@@ -1,14 +1,18 @@
 {
   "name": "maskit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EugeneBurlak/maskit.git"
+    "url": "git+https://github.com/burlakeugene/maskit.git"
   },
+  "keywords": [
+    "mask",
+    "input"
+  ],
   "main": "package/bundle.js",
-  "author": "Eugene Burlak <eugeneburlak@yandex.ru>",
+  "author": "Eugene Burlak <burlakeugene@gmail.com>",
   "license": "MIT",
-  "description": "",
+  "description": "Simple mask for inputs, only 3Kb",
   "scripts": {
     "dev": "CONFIG_NAME='dev' webpack-dev-server --mode development --port 3001 --open --hot",
     "build_app": "CONFIG_NAME='dev' webpack --mode production",
