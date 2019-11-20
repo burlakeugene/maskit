@@ -1,9 +1,9 @@
 {
-  "name": "mask-it",
-  "version": "1.0.0",
+  "name": "maskit",
+  "version": "1.0.4",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/burlakeugene/mask-it.git"
+    "url": "git+https://github.com/burlakeugene/maskit.git"
   },
   "keywords": [
     "mask",
@@ -39,7 +39,7 @@
     "webpack-dev-server": "^3.5.1"
   },
   "bugs": {
-    "url": "https://github.com/burlakeugene/mask-it/issues"
+    "url": "https://github.com/burlakeugene/maskit/issues"
   },
-  "homepage": "https://github.com/burlakeugene/mask-it#readme"
+  "homepage": "https://github.com/burlakeugene/maskit#readme"
 }
