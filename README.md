@@ -2,7 +2,8 @@
 ## Maskit
 
 ```
-Demo: [https://burlakeugene.github.io/maskit/](https://burlakeugene.github.io/maskit/)
+Demo:
+[https://burlakeugene.github.io/maskit/](https://burlakeugene.github.io/maskit/)
 ```
 ```
 npm i --save maskit
