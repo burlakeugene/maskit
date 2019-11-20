@@ -1,7 +1,8 @@
 
 ## Maskit
 
-Demo: [burlakeugene.github.io/maskit](https://burlakeugene.github.io/maskit/){:target="_blank"}
+Demo:
+[burlakeugene.github.io/maskit](https://burlakeugene.github.io/maskit/)
 ```
 npm i --save maskit
 ```
