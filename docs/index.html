@@ -6,12 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>MaskIt</title>
     <script>
-        const APP_CONFIG = JSON.parse('{"name":"MaskIt","publicPath":"./","connection":{"REST":{"protocol":"http","host":"127.0.0.1","port":"8103"}}}');
+        const APP_CONFIG = JSON.parse('{"name":"MaskIt","publicPath":"/","connection":{"REST":{"protocol":"http","host":"127.0.0.1","port":"8103"}}}');
     </script>
   </head>
 
   <body>
-    <input type="text" data-maskit="+{7}(000) 000-00-00">
-    <input type="text" data-maskit="Ы {/} 000">
-  <script type="text/javascript" src="./bundle.js"></script></body>
+    Phone:
+    <input type="text" data-maskit="+0 (000) 000-00-00">
+    Date:
+    <input type="text" data-maskit="00 {/} 00">
+  <script type="text/javascript" src="/bundle.js"></script></body>
 </html>

@@ -1,11 +1,12 @@
 import Maskit from '../package';
 
-document.querySelectorAll('[data-maskit]').forEach((item, index) => {
-  new Maskit(item, {
+document.querySelectorAll('input').forEach((item, index) => {
+  let mask = new Maskit(item, {
+    mask: item.getAttribute('data-maskit'),
     notFilledClear: true,
     onFilled: scope => {},
     offFilled: scope => {},
-    onBlur: scope => {}
+    onBlur: scope => {},
+    onChange: scope => {}
   });
 });
-

@@ -1,14 +1,24 @@
 export default class Maskit {
   constructor(item, options = {}) {
-    this.input = item;
-    this.value = '';
-    this.mask = this.createMaskArray(item.getAttribute('data-maskit'));
+    this.isDom = item instanceof Element || item instanceof HTMLDocument;
+    this.input = this.isDom ? item : false;
+    this.value = this.input ? this.input.value : '';
+    this.input.value = '';
+    this.mask = options.mask ? this.createMaskArray(options.mask) : false;
     this.options = options;
     this.filled = false;
+    this.onBlur = this.onBlur.bind(this);
+    this.setInitialValue = this.setInitialValue.bind(this);
+    this.checkErrors();
     this.init();
   }
 
-  createMaskArray(mask) {
+  checkErrors() {
+    if (!this.isDom) throw new Error('First argument must be DOM element');
+  }
+
+  createMaskArray(mask, callback) {
+    if (!mask) return false;
     let maskArray = [],
       continueCount = 0,
       specChars = '?+-()[]{}.,\\/-=_~`|\'" ';
@@ -38,6 +48,7 @@ export default class Maskit {
         }
       }
     }
+    callback && callback();
     return maskArray;
   }
 
@@ -67,6 +78,7 @@ export default class Maskit {
   }
 
   checkMask(value, mask) {
+    if (!mask) return value;
     let newValue = '',
       maskIndex = 0;
     for (let index in value) {
@@ -83,6 +95,43 @@ export default class Maskit {
       }
     }
     return newValue;
+  }
+
+  checkInitialMask(value, mask) {
+    let newValue = '';
+    for (let index in value) {
+      index = parseInt(index);
+      let char = value[index].toString(),
+        maskChar = mask[index];
+      if (!maskChar) break;
+      if (maskChar.type === 'plain') {
+        if (maskChar.value === char) newValue += char;
+        else break;
+      }
+      if (maskChar.type === 'dynamic') {
+        if (maskChar.value === '0') {
+          let pattern = /^[0-9]+$/;
+          if (pattern.test(char)) newValue += char;
+          else break;
+        }
+        if (maskChar.value === 'A') {
+          let pattern = /^[A-Za-zА-Яа-я]+$/;
+          if (pattern.test(char)) newValue += char;
+          else break;
+        }
+        if (maskChar.value === 'Ы') {
+          let pattern = /^[А-Яа-я]+$/;
+          if (pattern.test(char)) newValue += char;
+          else break;
+        }
+      }
+    }
+    return newValue;
+  }
+
+  setMask(mask) {
+    this.mask = this.createMaskArray(mask);
+    this.setInitialValue();
   }
 
   onFilled() {
@@ -106,7 +155,11 @@ export default class Maskit {
   }
 
   setValue(value) {
+    let { onChange } = this.options;
     this.input.value = value;
+    if (this.value === value) return;
+    this.value = value;
+    onChange && onChange(this);
     if (value.length === this.mask.length) {
       this.onFilled();
     } else {
@@ -114,17 +167,21 @@ export default class Maskit {
     }
   }
 
+  setInitialValue() {
+    if (!this.value) return;
+    let value = this.checkInitialMask(this.value, this.mask);
+    this.setValue(value);
+  }
+
   listenerInput() {
-    this.input.addEventListener('input', e => {
-      this.value = this.checkMask(e.target.value, this.mask);
-      this.setValue(this.value);
-    });
+    this.input &&
+      this.input.addEventListener('input', e => {
+        this.setValue(this.checkMask(e.target.value, this.mask));
+      });
   }
 
   listenerBlur() {
-    this.input.addEventListener('blur', e => {
-      this.onBlur();
-    });
+    this.input && this.input.addEventListener('blur', this.onBlur);
   }
 
   runListener() {
@@ -133,6 +190,7 @@ export default class Maskit {
   }
 
   init() {
+    this.setInitialValue();
     this.runListener();
   }
 }

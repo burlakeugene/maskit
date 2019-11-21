@@ -22,10 +22,12 @@ In other cases mask will be waiting for same char
 ```
 document.querySelectorAll('input[data-maskit]').forEach((input, index) => {
   new Maskit(input, {
+    mask: input.getAttribute('data-maskit'),
     notFilledClear: true,
     onFilled: scope => {},
     offFilled: scope => {},
-    onBlur: scope => {}
+    onBlur: scope => {},
+    onChange: scope => {}
   });
 });
 ```
