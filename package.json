@@ -12,7 +12,7 @@
   "main": "package/bundle.js",
   "author": "Eugene Burlak <burlakeugene@gmail.com>",
   "license": "MIT",
-  "description": "Simple mask for inputs, just 4.24Kb",
+  "description": "Simple mask for inputs, just 4.14 Kb",
   "scripts": {
     "dev": "CONFIG_NAME='dev' webpack-dev-server --mode development --port 3001 --open --hot",
     "build_app": "CONFIG_NAME='prod' webpack --mode production",
