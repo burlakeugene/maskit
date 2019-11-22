@@ -83,7 +83,8 @@ if (buildType === 'app') {
     new HtmlWebpackPlugin({
       template: './src/app/index.html',
       APP_CONFIG: JSON.stringify(JSON_CONFIG),
-      title: JSON_CONFIG.name
+      title: JSON_CONFIG.name,
+      rootUrl: JSON_CONFIG.publicPath
     })
   ];
 }
