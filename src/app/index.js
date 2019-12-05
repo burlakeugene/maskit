@@ -2,25 +2,35 @@ import Maskit from '../package';
 import './styles.scss';
 
 window.addEventListener('load', () => {
-  let blobFunc = () => {
-    let blob = document.querySelector('.header-blob');
-    if(!blob) return;
-    window.addEventListener('scroll', () => {
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      if(scrollTop > 0){
-        // blob.querySelector('path').setAttribute('d', 'm 0,0 0,300 L 300,300 0, 300, 0')
-      }
-    })
-  }
-  blobFunc();
-  document.querySelectorAll('input').forEach((item, index) => {
-    let mask = new Maskit(item, {
-      mask: item.getAttribute('data-maskit'),
+  const reRenderCode = mask => {
+    document.querySelectorAll('.mask-value').forEach(item => {
+      item.innerHTML = mask;
+      setTimeout(() => {
+        hljs.highlightBlock(item.closest('.code'));
+      }, 0)
+    });
+  };
+  let maskInput = document.querySelector('input#mask'),
+    mask = maskInput.value,
+    resultInput = document.querySelector('input#result'),
+    masked = new Maskit(resultInput, {
+      mask,
       notFilledClear: true,
       onFilled: scope => {},
       offFilled: scope => {},
       onBlur: scope => {},
-      onChange: scope => {}
+      onChange: scope => {},
+      onInit: scope => {
+        reRenderCode(scope.options.mask);
+      }
     });
+  document.querySelectorAll('.mask-value').forEach(item => {
+    item.innerHTML = mask;
   });
-})
+  maskInput.addEventListener('input', e => {
+    let value = e.target.value;
+    masked.setValue('');
+    masked.setMask(value);
+    reRenderCode(value);
+  });
+});

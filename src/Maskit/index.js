@@ -190,7 +190,9 @@ export default class Maskit {
   }
 
   init() {
+    let { onInit } = this.options;
     this.setInitialValue();
     this.runListener();
+    onInit && onInit(this);
   }
 }
