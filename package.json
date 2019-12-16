@@ -1,6 +1,6 @@
 {
   "name": "maskit",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/burlakeugene/maskit.git"
@@ -9,6 +9,10 @@
     "mask",
     "input"
   ],
+  "bugs": {
+    "url": "https://github.com/burlakeugene/maskit/issues"
+  },
+  "homepage": "https://burlakeugene.github.io/maskit/",
   "main": "package/bundle.js",
   "author": "Eugene Burlak <burlakeugene@gmail.com>",
   "license": "MIT",
@@ -36,9 +40,5 @@
     "webpack": "^4.33.0",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.5.1"
-  },
-  "bugs": {
-    "url": "https://github.com/burlakeugene/maskit/issues"
-  },
-  "homepage": "https://burlakeugene.github.io/maskit/"
+  }
 }
