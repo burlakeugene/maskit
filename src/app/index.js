@@ -27,6 +27,9 @@ window.addEventListener('load', () => {
   document.querySelectorAll('.mask-value').forEach(item => {
     item.innerHTML = mask;
   });
+  resultInput.addEventListener('change', e => {
+    console.log(e.target.value);
+  })
   maskInput.addEventListener('input', e => {
     let value = e.target.value;
     masked.setValue('');

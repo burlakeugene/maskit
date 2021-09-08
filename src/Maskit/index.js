@@ -31,19 +31,19 @@ export default class Maskit {
       if (mask[index] === '{' && mask[index + 2] === '}') {
         maskArray.push({
           type: 'plain',
-          value: mask[index + 1]
+          value: mask[index + 1],
         });
         continueCount += 2;
       } else {
         if (specChars.split('').indexOf(mask[index]) >= 0) {
           maskArray.push({
             type: 'plain',
-            value: mask[index]
+            value: mask[index],
           });
         } else {
           maskArray.push({
             type: 'dynamic',
-            value: mask[index]
+            value: mask[index],
           });
         }
       }
@@ -148,9 +148,17 @@ export default class Maskit {
 
   onBlur() {
     let { onBlur, notFilledClear } = this.options;
-    notFilledClear &&
-      this.value.length !== this.mask.length &&
+    if (notFilledClear && this.value.length !== this.mask.length) {
       this.setValue('');
+      setTimeout(() => {
+        if ('createEvent' in document) {
+          var event = document.createEvent('HTMLEvents');
+          event.initEvent('change', false, true);
+          this.input.dispatchEvent(event);
+        } else this.input.fireEvent('onchange');
+      }, 0);
+    }
+
     onBlur && onBlur(this);
   }
 
@@ -175,7 +183,7 @@ export default class Maskit {
 
   listenerInput() {
     this.input &&
-      this.input.addEventListener('input', e => {
+      this.input.addEventListener('input', (e) => {
         this.setValue(this.checkMask(e.target.value, this.mask));
       });
   }
