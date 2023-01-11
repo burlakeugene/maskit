@@ -81,11 +81,13 @@ export default class Maskit {
     if (!mask) return value;
     let newValue = '',
       maskIndex = 0;
+
     for (let index in value) {
-      if (!mask[index]) return newValue;
+      if (!mask[maskIndex]) return newValue;
       index = parseInt(index);
       let char = value[index].toString();
-      if (char === mask[index].value) {
+
+      if (char === mask[maskIndex].value) {
         newValue += char;
         ++maskIndex;
       } else {
@@ -184,7 +186,18 @@ export default class Maskit {
   listenerInput() {
     this.input &&
       this.input.addEventListener('input', (e) => {
-        this.setValue(this.checkMask(e.target.value, this.mask));
+        let value = e.target.value;
+        const { beforeChange } = this.options;
+
+        const beforeChangeResult = beforeChange({
+          scope: this,
+          value,
+        });
+
+        if (beforeChange && beforeChangeResult) {
+          value = beforeChangeResult;
+        }
+        this.setValue(this.checkMask(value, this.mask));
       });
   }
 

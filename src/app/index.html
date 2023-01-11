@@ -65,7 +65,7 @@
                   Mask:
                 </div>
                 <div class="form-field-input">
-                  <input value="+{3}{8} 000 000 0000" type="text" id="mask" />
+                  <input value="0 (000) 000-00-00" type="text" id="mask" />
                 </div>
               </label>
             </div>
@@ -101,14 +101,15 @@
 
               let input = document.querySelector('input.masked'),
                 mask = new Maskit(input, {
-                        mask: '<span class="mask-value"></span>',
-                        notFilledClear: true, // clear input on leave the focus if mask is not filled
-                        onFilled: scope => {}, // starts when mask is filled
-                        offFilled: scope => {}, // starts when mask is not filled
-                        onBlur: scope => {}, // starts when input has left the focus
-                        onChange: scope => {} // starts when input is changed,
-                        onInit: scope => {} // starts when mask initialize
-                      });
+                  mask: '<span class="mask-value"></span>',
+                  notFilledClear: true, // clear input on leave the focus if mask is not filled
+                  onFilled: scope => {}, // starts when mask is filled
+                  offFilled: scope => {}, // starts when mask is not filled
+                  onBlur: scope => {}, // starts when input has left the focus
+                  beforeChange: ({scope, value}) => {} // run before change flow, to set dynamic mask, etc.
+                  onChange: scope => {} // starts when input is changed
+                  onInit: scope => {} // starts when mask initialize
+                });
               // if you need to change mask of input
               // mask.setMask(newMask);
             </code>

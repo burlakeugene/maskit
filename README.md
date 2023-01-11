@@ -29,6 +29,7 @@ document.querySelectorAll('input[data-maskit]').forEach((input, index) => {
     onBlur: scope => {},
     onChange: scope => {},
     onInit: scope => {}
+    beforeChange: ({scope, value}) => {}
   });
 });
 ```
