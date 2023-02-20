@@ -189,13 +189,14 @@ export default class Maskit {
         let value = e.target.value;
         const { beforeChange } = this.options;
 
-        const beforeChangeResult = beforeChange({
-          scope: this,
-          value,
-        });
-
-        if (beforeChange && beforeChangeResult) {
-          value = beforeChangeResult;
+        if (beforeChange) {
+          const beforeChangeResult = beforeChange({
+            scope: this,
+            value,
+          });
+          if (beforeChangeResult) {
+            value = beforeChangeResult;
+          }
         }
         this.setValue(this.checkMask(value, this.mask));
       });
