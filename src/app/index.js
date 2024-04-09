@@ -10,6 +10,7 @@ window.addEventListener('load', () => {
       }, 0);
     });
   };
+
   let maskInput = document.querySelector('input#mask'),
     mask = maskInput.value,
     resultInput = document.querySelector('input#result'),
